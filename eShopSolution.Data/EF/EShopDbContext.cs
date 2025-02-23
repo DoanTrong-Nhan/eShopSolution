@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eShopSolution.Data.EF
 {
-    public class EShopDbContext : IdentityDbContext
+    public class EShopDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         public EShopDbContext(DbContextOptions options) : base(options)
         {
@@ -36,15 +36,15 @@ namespace eShopSolution.Data.EF
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
-            /*            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
-                        modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
-                        modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
-                        modelBuilder.ApplyConfiguration(new SlideConfiguration());*/
-
             //Data Seeding
             modelBuilder.Seed();
 
             //base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            /*     modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+               modelBuilder.ApplyConfiguration(new SlideConfiguration());*/
+         //   base.OnModelCreating(modelBuilder);
         }
 
 
