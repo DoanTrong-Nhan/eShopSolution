@@ -1,5 +1,6 @@
 ﻿using eShopSolution.Data.Configurations;
 using eShopSolution.Data.Entities;
+using eShopSolution.Data.Extenstions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -35,12 +36,14 @@ namespace eShopSolution.Data.EF
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
+            //Data Seeding
+            modelBuilder.Seed();
+
+            //base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             /*     modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
                modelBuilder.ApplyConfiguration(new SlideConfiguration());*/
-
-            modelBuilder.Seed();
          //   base.OnModelCreating(modelBuilder);
         }
 
